@@ -1,26 +1,21 @@
 
 #include "minitalk.h"
 
-double	ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
-	double	nb;
-	int		sign;
+	int		nb = 0;
+	int		sign = 1;
 
-	nb = 0;
-	sign = 1;
 	while ((*str >= 9 && *str <= 13) || *str == 32)
 		str++;
-	if (*str == '-')
+	if (*str == '-' || *str == '+')
 	{
-		sign = -1;
+		if (*str == '-')
+			sign = -1;
 		str++;
 	}
-	else if (*str == '+')
-		str++;
 	while (*str >= '0' && *str <= '9')
 	{
-		if (nb * sign > INT_MAX || nb * sign < INT_MIN)
-			return (-1);
 		nb = (nb * 10) + (*str - '0');
 		str++;
 	}
@@ -29,9 +24,7 @@ double	ft_atoi(const char *str)
 
 int	ft_isdigit(int c)
 {
-	if (c >= '0' && c <= '9')
-		return (0);
-	return (1);
+	return (c >= '0' && c <= '9');
 }
 
 int	valid_pid(const char *str)

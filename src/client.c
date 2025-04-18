@@ -1,7 +1,8 @@
 
+
 #include "minitalk.h"
 
-volatile int	g_flag;
+int	g_flag;
 
 static void	sig_handler(int sig)
 {
@@ -19,8 +20,9 @@ static void	send_bit(int bit, pid_t pid)
 	g_flag = 0;
 	if (bit == 0)
 		kill(pid, SIGUSR1);
-	else
+	else if(bit == 1)
 		kill(pid, SIGUSR2);
+	usleep(200);
 	while (!g_flag)
 		pause();
 }
