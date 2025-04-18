@@ -1,5 +1,4 @@
 
-
 #include "minitalk.h"
 
 int	g_flag;
